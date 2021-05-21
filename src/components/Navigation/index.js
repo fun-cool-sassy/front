@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import {Box,Tab,Tabs,Typography} from '@material-ui/core';
+import { Box, Tab, Tabs, Typography } from '@material-ui/core';
+import PopUp from '../PopUp';
 
 
     function TabPanel(props) {
@@ -67,17 +68,17 @@ function a11yProps(index) {
           aria-label="Vertical tabs example"
           className={classes.tabs}
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-          <Tab label="Item Four" {...a11yProps(3)} />
-          <Tab label="Item Five" {...a11yProps(4)} />
+          <Tab label="로고" {...a11yProps(0)} />
+          <Tab label="지도" {...a11yProps(1)} />
+          <Tab label="톡" {...a11yProps(2)} />
+          <Tab label="랭킹" {...a11yProps(3)} />
+          <Tab label="기타" {...a11yProps(4)} />
         </Tabs>
         <TabPanel value={value} index={0}>
           Item One
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+          <PopUp/>
         </TabPanel>
         <TabPanel value={value} index={2}>
           Item Three
