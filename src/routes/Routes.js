@@ -17,6 +17,7 @@ import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import Header from "../components/Header";
+import Maps from "../components/Maps";
 
 const MyContainer = styled.div`
     display: flex;
@@ -55,7 +56,7 @@ const Routes = (props)=>{
                         
                         <Route 
                             path="/"
-                            // render={(props)=>(<><Home/></>)}
+                            // render={(props)=>(<Maps/>)}
                         />
                     </Switch>
                 </Box>

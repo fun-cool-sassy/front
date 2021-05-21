@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {Box,Tab,Tabs,Typography} from '@material-ui/core';
-
+import Maps from '../Maps';
+import styled from "styled-components";
+import Search from '../Search';
 
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
@@ -40,15 +42,20 @@ function a11yProps(index) {
   
   const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
       backgroundColor: theme.palette.background.paper,
       display: 'flex',
-      height: 224,
+      height: '75vh',
+
     },
     tabs: {
       borderRight: `1px solid ${theme.palette.divider}`,
     },
   }));
+  const WrapperBox = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+`;
   const Navigation = () => {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -58,7 +65,9 @@ function a11yProps(index) {
     };
   
     return(
+        <WrapperBox>
         <div className={classes.root}>
+            
         <Tabs
           orientation="vertical"
           variant="scrollable"
@@ -67,20 +76,20 @@ function a11yProps(index) {
           aria-label="Vertical tabs example"
           className={classes.tabs}
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-          <Tab label="Item Four" {...a11yProps(3)} />
-          <Tab label="Item Five" {...a11yProps(4)} />
+          <Tab label="메인" {...a11yProps(0)} />
+          <Tab label="지도" {...a11yProps(1)} />
+          <Tab label="검색" {...a11yProps(2)} />
+          <Tab label="랭킹" {...a11yProps(3)} />
+          <Tab label="팀 소개" {...a11yProps(4)} />
         </Tabs>
         <TabPanel value={value} index={0}>
-          Item One
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+            <Search/>
+            
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+            <Search/>
         </TabPanel>
         <TabPanel value={value} index={3}>
           Item Four
@@ -89,6 +98,8 @@ function a11yProps(index) {
           Item Five
         </TabPanel>
       </div>
+      <Maps/>
+      </WrapperBox>
     )
 }
 
