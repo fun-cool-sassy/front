@@ -2,18 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {Box,Tab,Tabs,Typography} from '@material-ui/core';
-import Maps from '../Maps';
-import styled from "styled-components";
 import Search from '../Search';
 import PopUp from "../PopUpInfo";
 import Button from "@material-ui/core/Button";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
+import Rank from '../Rank'
 
 
 function TabPanel(props) {
@@ -57,10 +50,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	tabs: {
 		borderRight: `1px solid ${theme.palette.divider}`,
-	},
-	searchPanel: {
-		height: 600,
-		width: 400,
 	},
 	displayFlex: {
 		display: "flex",
@@ -107,16 +96,12 @@ const useStyles = makeStyles((theme) => ({
 const Navigation = () => {
 	const classes = useStyles();
 	const [value, setValue] = React.useState(0);
-	const [content, setContent] = React.useState("");
 	const [isSearchPanel, setIsSearchPanel] = React.useState(true);
 	const [isTalkPanel, setIsTalkPanel] = React.useState(true);
 	const [isRankPanel, setIsRankPanel] = React.useState(true);
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
-	const handleContent = (event) => {
-		setContent(event.target.value);
-  };
 
 	return (
 		<div className={classes.root}>
@@ -161,23 +146,7 @@ const Navigation = () => {
 			</TabPanel>
 			<TabPanel value={value} index={3}>
 			<Box className={classes.displayFlex}>
-					{isRankPanel && (
-						<Box className={classes.searchPanel} display="flex" flexDirection="column">
-							<FormControl className={classes.dialog}>
-							<InputLabel id="demo-simple-select-label">Rank</InputLabel>
-							<Select
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								value={content}
-								onChange={handleContent}
-							>
-								<MenuItem value={'UserRank'}>User Rank</MenuItem>
-								<MenuItem value={'TargetRank'}>Target Rank</MenuItem>
-								<MenuItem value={'ProblemRank'}>Problem Rank</MenuItem>
-							</Select>
-            </FormControl>
-						</Box>
-					)}
+					{isRankPanel && <Rank /> }
 					<Button height={400} onClick={() => setIsRankPanel(!isRankPanel)}>
 						<ArrowBackIosIcon></ArrowBackIosIcon>
 					</Button>
