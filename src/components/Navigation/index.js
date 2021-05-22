@@ -15,6 +15,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Rank from '../Rank'
 import StreetViewMap from '../StreetViewMap'
 import Pannel from '../Pannel';
+import Footer from '../Footer';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -139,7 +140,7 @@ const Navigation = () => {
 					Item Five
 				</TabPanel>
 			</Pannel>
-			<StreetViewMap />
+            <StreetViewMap/>
 		</div>
 	);
 };
