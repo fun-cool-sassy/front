@@ -177,6 +177,27 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
+const explanationText = (
+  <div>
+    <p>
+      Explore the world via Google Street View, and check non-barrier free zones
+      on Google Earth maps and shares it among users. Let’s help users who have
+      barriers and become bounty hunter.{" "}
+    </p>
+    <h4>How to use</h4>
+    <ol>
+      <li>Choose street that you want to explore and click</li>
+      <li>Street Views will then be shown from the area you see in the map.</li>
+      <li>Explore map and check non-barrier free zone.</li>
+      <li>Click the [Report] button to share.</li>
+      <li>
+        You can search non-barrier free zone with our SNS channel on left tab.
+      </li>
+      <li>Cheer up! Let’s find out more than others! Raise the ranking!</li>
+    </ol>
+  </div>
+);
+
 const Navigation = () => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
@@ -224,8 +245,8 @@ const Navigation = () => {
                   inputProps={{ "aria-label": "search" }}
                 />
                 <SearchIcon />
-							</Box>
-							<Typography className={classes.font}>Boston, USA</Typography>
+              </Box>
+              {/* <Typography className={classes.font}>Boston, USA</Typography>
 							<Typography className={classes.font}>Seoul, South Korea</Typography>
 							<Typography className={classes.font}>Venice, Italy</Typography>
 							<Typography className={classes.font}>South Island, New Zealand</Typography>
@@ -240,7 +261,8 @@ const Navigation = () => {
 							<Typography className={classes.font}>Daejeon, South Korea</Typography>
 							<Typography className={classes.font}>Beijing, China</Typography>
 							<Typography className={classes.font}>Busan, South Korea</Typography>
-							<Typography className={classes.font}>Texas, USA</Typography>
+							<Typography className={classes.font}>Texas, USA</Typography> */}
+              {explanationText}
             </Box>
           )}
           <Button height={400} onClick={() => setIsSearchPanel(!isSearchPanel)}>
@@ -319,22 +341,52 @@ const Navigation = () => {
                   <MenuItem value={"TargetRank"}>Target Rank</MenuItem>
                   <MenuItem value={"ProblemRank"}>Problem Rank</MenuItem>
                 </Select>
-							</FormControl>
-							<Typography className={classes.font}>1. qwerty(20 reports)</Typography>
-							<Typography className={classes.font}>2. cherry(19 reports)</Typography>
-							<Typography className={classes.font}>3. momjeans(16 reports)</Typography>
-							<Typography className={classes.font}>4. programmer(15 reports)</Typography>
-							<Typography className={classes.font}>5. janet(14 reports)</Typography>
-							<Typography className={classes.font}>6. bobbuilder(11 reports)</Typography>
-							<Typography className={classes.font}>7. carrot(10 reports)</Typography>
-							<Typography className={classes.font}>8. teambob(9 reports)</Typography>
-							<Typography className={classes.font}>9. drinkbeer(7 reports)</Typography>
-							<Typography className={classes.font}>10. starbucks(6 reports)</Typography>
-							<Typography className={classes.font}>11. angel(4 reports)</Typography>
-							<Typography className={classes.font}>12. asdf(3 reports)</Typography>
-							<Typography className={classes.font}>13. blanket(2 reports)</Typography>
-							<Typography className={classes.font}>14. password(1 reports)</Typography>
-							<Typography className={classes.font}>15. dave(0 reports)</Typography>
+              </FormControl>
+              <Typography className={classes.font}>
+                1. qwerty(20 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                2. cherry(19 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                3. momjeans(16 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                4. programmer(15 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                5. janet(14 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                6. bobbuilder(11 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                7. carrot(10 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                8. teambob(9 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                9. drinkbeer(7 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                10. starbucks(6 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                11. angel(4 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                12. asdf(3 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                13. blanket(2 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                14. password(1 reports)
+              </Typography>
+              <Typography className={classes.font}>
+                15. dave(0 reports)
+              </Typography>
             </Box>
           )}
           <Button height={400} onClick={() => setIsRankPanel(!isRankPanel)}>
@@ -344,7 +396,19 @@ const Navigation = () => {
         </Box>
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Created by Team FCS(Fun Cool Sassy)
+        <h2>Team: Fun Cool Sassy</h2>
+        <h3>Entrepreneur</h3>
+        <p>Young-ji Sim(0g@soongsil.ac.kr)</p>
+        <h3>Designer</h3>
+        <p>Minju Kim(democracy0218@gmail.com)</p>
+        <h3>Developer</h3>
+        <p>Minju Kim(minj01134@gmail.com)</p>
+        <p>Siyual Bak(siyual.bak@gmail.com )</p>
+        <p>Yeong-u Song(songyw9812@gmail.com)</p>
+        <p>Yoojeong Lee(yjclarelee@postech.ac.kr)</p>
+
+        <br />
+        <p>Junction X Seoul</p>
       </TabPanel>
     </div>
   );
