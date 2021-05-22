@@ -224,7 +224,23 @@ const Navigation = () => {
                   inputProps={{ "aria-label": "search" }}
                 />
                 <SearchIcon />
-              </Box>
+							</Box>
+							<Typography className={classes.font}>Boston, USA</Typography>
+							<Typography className={classes.font}>Seoul, South Korea</Typography>
+							<Typography className={classes.font}>Venice, Italy</Typography>
+							<Typography className={classes.font}>South Island, New Zealand</Typography>
+							<Typography className={classes.font}>London, England</Typography>
+							<Typography className={classes.font}>UC Berkeley, USA</Typography>
+							<Typography className={classes.font}>Tokyo, Japan</Typography>
+							<Typography className={classes.font}>Boston, USA</Typography>
+							<Typography className={classes.font}>Las Vagas, USA</Typography>
+							<Typography className={classes.font}>New York City, USA</Typography>
+							<Typography className={classes.font}>Bali, Indonesia</Typography>
+							<Typography className={classes.font}>New Jersey, USA</Typography>
+							<Typography className={classes.font}>Daejeon, South Korea</Typography>
+							<Typography className={classes.font}>Beijing, China</Typography>
+							<Typography className={classes.font}>Busan, South Korea</Typography>
+							<Typography className={classes.font}>Texas, USA</Typography>
             </Box>
           )}
           <Button height={400} onClick={() => setIsSearchPanel(!isSearchPanel)}>
@@ -303,7 +319,22 @@ const Navigation = () => {
                   <MenuItem value={"TargetRank"}>Target Rank</MenuItem>
                   <MenuItem value={"ProblemRank"}>Problem Rank</MenuItem>
                 </Select>
-              </FormControl>
+							</FormControl>
+							<Typography className={classes.font}>1. qwerty(20 reports)</Typography>
+							<Typography className={classes.font}>2. cherry(19 reports)</Typography>
+							<Typography className={classes.font}>3. momjeans(16 reports)</Typography>
+							<Typography className={classes.font}>4. programmer(15 reports)</Typography>
+							<Typography className={classes.font}>5. janet(14 reports)</Typography>
+							<Typography className={classes.font}>6. bobbuilder(11 reports)</Typography>
+							<Typography className={classes.font}>7. carrot(10 reports)</Typography>
+							<Typography className={classes.font}>8. teambob(9 reports)</Typography>
+							<Typography className={classes.font}>9. drinkbeer(7 reports)</Typography>
+							<Typography className={classes.font}>10. starbucks(6 reports)</Typography>
+							<Typography className={classes.font}>11. angel(4 reports)</Typography>
+							<Typography className={classes.font}>12. asdf(3 reports)</Typography>
+							<Typography className={classes.font}>13. blanket(2 reports)</Typography>
+							<Typography className={classes.font}>14. password(1 reports)</Typography>
+							<Typography className={classes.font}>15. dave(0 reports)</Typography>
             </Box>
           )}
           <Button height={400} onClick={() => setIsRankPanel(!isRankPanel)}>
