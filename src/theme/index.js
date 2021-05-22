@@ -10,7 +10,7 @@ const color = {
       contrastText: "#0045FF"
     },
     background:{
-      default:'#444444',
+      default:'#000000',
     },
     text:{
       disabled: "rgba(0, 0, 0, 0.38)",
