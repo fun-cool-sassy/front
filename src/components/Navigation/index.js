@@ -1,4 +1,8 @@
-import React from 'react';
+import React, {
+	useState,
+	useCallback,
+	useMemo,
+} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {Box,Tab,Tabs,Typography} from '@material-ui/core';
@@ -7,7 +11,6 @@ import PopUp from "../PopUpInfo";
 import Button from "@material-ui/core/Button";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Rank from '../Rank'
-
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -95,13 +98,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Navigation = () => {
 	const classes = useStyles();
-	const [value, setValue] = React.useState(0);
-	const [isSearchPanel, setIsSearchPanel] = React.useState(true);
-	const [isTalkPanel, setIsTalkPanel] = React.useState(true);
-	const [isRankPanel, setIsRankPanel] = React.useState(true);
+	const [value, setValue] = useState(0);
+
+	const [showPanel, setShowPanel] = useState(true);
+
+	const handleTogglePanel = useCallback(() => {
+		setShowPanel(!showPanel)
+	}, [showPanel])
+
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
+
+	const PannelButtonComponent = useMemo(() => (
+		<Button height={'100%'} onClick={handleTogglePanel}>
+			<ArrowBackIosIcon></ArrowBackIosIcon>
+		</Button>
+	), [handleTogglePanel])
 
 	return (
 		<div className={classes.root}>
@@ -124,32 +137,22 @@ const Navigation = () => {
 			</TabPanel>
 			<TabPanel value={value} index={1}>
 				<Box className={classes.displayFlex} >
-					{isSearchPanel && (
-						<Search/>
-					)}
-					<Button height={400} onClick={() => setIsSearchPanel(!isSearchPanel)}>
-						<ArrowBackIosIcon></ArrowBackIosIcon>
-					</Button>
+					{ showPanel && <Search/> }
+					{ PannelButtonComponent }
 					<PopUp />
 				</Box>
 			</TabPanel>
 			<TabPanel value={value} index={2}>
 			<Box className={classes.displayFlex}>
-					{isTalkPanel && (
-						<Search/>
-					)}
-					<Button height={400} onClick={() => setIsTalkPanel(!isTalkPanel)}>
-						<ArrowBackIosIcon></ArrowBackIosIcon>
-					</Button>
+					{ showPanel && <Search/> }
+					{ PannelButtonComponent }
 					<PopUp />
 				</Box>
 			</TabPanel>
 			<TabPanel value={value} index={3}>
 			<Box className={classes.displayFlex}>
-					{isRankPanel && <Rank /> }
-					<Button height={400} onClick={() => setIsRankPanel(!isRankPanel)}>
-						<ArrowBackIosIcon></ArrowBackIosIcon>
-					</Button>
+					{ showPanel && <Rank /> }
+					{ PannelButtonComponent }
 					<PopUp />
 				</Box>
 			</TabPanel>
