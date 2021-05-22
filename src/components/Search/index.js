@@ -9,7 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import {searchAddress} from '../../API/'
 import GoogleMapReact from 'google-map-react';
-
+import {GoogleMap, useJsApiLoader, StreetViewPanorama} from '@react-google-maps/api';
 
 import { List, ListItem,ListItemText } from '@material-ui/core';
 import ScreenShot from '../ScreenShot';
@@ -98,7 +98,17 @@ const Search = ()=>{
                      </div>
                 :<div></div>
 } 
-
+            <GoogleMap
+                clickableIcons={false}
+                mapContainerStyle={containerStyle}
+                center={center}
+                zoom={2}
+            >
+                <StreetViewPanorama
+                  position={center}
+                  visible={true}
+                />
+            </GoogleMap>
         </Paper>
     )
 }
