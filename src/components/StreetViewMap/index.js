@@ -1,23 +1,20 @@
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import React,{Component} from 'react';
-export class StreetViewMap extends Component {
-    
-  render() {
-    const containerStyle = {
-        position: 'relative',  
-        width: '700px',
-        height: '700px'
-      }
-    return (
-      <Map google={this.props.google} containerStyle={containerStyle} zoom={14} initialCenter={{ lat: 37.715133, lng: 126.734086}}>
- 
-        <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
-      </Map>
-    );
-  }
+import React from 'react'
+import styled from 'styled-components'
+
+import MapComponent from './MapComponent'
+
+const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`
+
+function StreetViewMap() {
+  return (
+    <Wrapper>
+      <MapComponent />
+    </Wrapper>
+  )
 }
- 
-export default GoogleApiWrapper({
-  apiKey: ('AIzaSyA_crOYEj2K4emrHWkGZsBiqm5Hw7jNyS4')
-})(StreetViewMap)
+
+export default StreetViewMap
