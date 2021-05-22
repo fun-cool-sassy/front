@@ -53,15 +53,15 @@ const useStyles = makeStyles((theme) => ({
 	},
 	searchPanel: {
 		height: 500,
-    width: 400,
+		width: 400,
 	},
 	displayFlex: {
 		display: "flex",
-  },
-  displayFlexCenter: {
-    display: "flex",
-    justifyContent: "center"
-  },
+	},
+	displayFlexCenter: {
+		display: "flex",
+		justifyContent: "center",
+	},
 	search: {
 		position: "relative",
 		borderRadius: theme.shape.borderRadius,
@@ -101,6 +101,7 @@ const Navigation = () => {
 	const classes = useStyles();
 	const [value, setValue] = React.useState(0);
 	const [isSearchPanel, setIsSearchPanel] = React.useState(true);
+	const [isTalkPanel, setIsTalkPanel] = React.useState(true);
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
@@ -115,11 +116,11 @@ const Navigation = () => {
 				aria-label="Vertical tabs example"
 				className={classes.tabs}
 			>
-				<Tab label="로고" {...a11yProps(0)} />
-				<Tab label="지도" {...a11yProps(1)} />
-				<Tab label="톡" {...a11yProps(2)} />
-				<Tab label="랭킹" {...a11yProps(3)} />
-				<Tab label="기타" {...a11yProps(4)} />
+				<Tab label="Logo" {...a11yProps(0)} />
+				<Tab label="Map" {...a11yProps(1)} />
+				<Tab label="Talk" {...a11yProps(2)} />
+				<Tab label="Rank" {...a11yProps(3)} />
+				<Tab label="Etc" {...a11yProps(4)} />
 			</Tabs>
 			<TabPanel value={value} index={0}>
 				Item One
@@ -133,7 +134,7 @@ const Navigation = () => {
 									placeholder="Search…"
 									inputProps={{ "aria-label": "search" }}
 								/>
-									<SearchIcon />
+								<SearchIcon />
 							</Box>
 						</Box>
 					)}
@@ -144,7 +145,25 @@ const Navigation = () => {
 				</Box>
 			</TabPanel>
 			<TabPanel value={value} index={2}>
-				Item Three
+			<Box className={classes.displayFlex}>
+					{isTalkPanel && (
+						<Box className={classes.searchPanel} display="flex" flexDirection="column" border={1}>
+							<Box className={classes.displayFlexCenter}>
+								<InputBase
+									placeholder="Search…"
+									inputProps={{ "aria-label": "search" }}
+								/>
+								<SearchIcon />
+							</Box>
+							<Button>Near me(1km)</Button>
+							<Button>Exclude resolved posts</Button>
+						</Box>
+					)}
+					<Button height={400} onClick={() => setIsTalkPanel(!isTalkPanel)}>
+						<ArrowBackIosIcon></ArrowBackIosIcon>
+					</Button>
+					<PopUp />
+				</Box>
 			</TabPanel>
 			<TabPanel value={value} index={3}>
 				Item Four

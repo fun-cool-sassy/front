@@ -67,35 +67,34 @@ function SimpleDialog(props) {
 					<form className={classes.root} noValidate autoComplete="off">
 						<Typography>{new Date().toLocaleString()}</Typography>
 						<FormControl className={classes.dialog}>
-							<InputLabel id="demo-simple-select-label">대상</InputLabel>
+							<InputLabel id="demo-simple-select-label">Target</InputLabel>
 							<Select
 								labelId="demo-simple-select-label"
 								id="demo-simple-select"
 								value={kind}
 								onChange={handleKind}
 							>
-								<MenuItem value={'휠체어'}>휠체어</MenuItem>
-								<MenuItem value={'노인'}>노인</MenuItem>
-								<MenuItem value={'아동'}>아동</MenuItem>
-								<MenuItem value={'기타'}>기타</MenuItem>
+								<MenuItem value={'Wheelchair'}>Wheelchair</MenuItem>
+								<MenuItem value={'Elderly'}>Elders</MenuItem>
+								<MenuItem value={'Children'}>Children</MenuItem>
+								<MenuItem value={'Others'}>Others</MenuItem>
 							</Select>
             </FormControl>
             <FormControl className={classes.formControl}>
-							<InputLabel id="demo-simple-select-label">문제</InputLabel>
+							<InputLabel id="demo-simple-select-label">Problem</InputLabel>
 							<Select
 								labelId="demo-simple-select-label"
 								id="demo-simple-select"
 								value={problem}
 								onChange={handleProblem}
 							>
-								<MenuItem value={'고장/파손'}>고장/파손</MenuItem>
-								<MenuItem value={'장애물'}>장애물</MenuItem>
-								<MenuItem value={'미설치'}>미설치</MenuItem>
-								<MenuItem value={'공사중'}>공사중</MenuItem>
-								<MenuItem value={'수정'}>수정</MenuItem>
-								<MenuItem value={'기타'}>기타</MenuItem>
+								<MenuItem value={'Broken'}>Broken</MenuItem>
+								<MenuItem value={'Obstacles'}>Obstacles</MenuItem>
+								<MenuItem value={'Uninstalled'}>Uninstalled</MenuItem>
+								<MenuItem value={'UnderConstruction'}>Under Construction</MenuItem>
+								<MenuItem value={'Others'}>Others</MenuItem>
               </Select>
-              <TextareaAutosize aria-label="minimum height" rowsMin={10} placeholder="상세내용" />
+              <TextareaAutosize aria-label="minimum height" rowsMin={10} placeholder="Details" />
 						</FormControl>
 					</form>
 				</Box>
