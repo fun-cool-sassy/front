@@ -123,8 +123,9 @@ export default function PopUp() {
 	return (
 		<div>
 			<br />
+			<Button variant="outlined" color="primary">My location</Button>
 			<Button variant="outlined" color="primary" onClick={handleClickOpen}>
-				Open simple dialog
+				Report
 			</Button>
 			<SimpleDialog
 				open={open}
