@@ -78,21 +78,29 @@ const Search = ()=>{
                      </List>
                      <div style={{ height: '70vh', width: '100%' }}>
                         <GoogleMapReact
-                        bootstrapURLKeys={{ key: 'AIzaSyA_crOYEj2K4emrHWkGZsBiqm5Hw7jNyS4'}}
-                        defaultCenter={{lat:result[0].geometry.location.lat,lng:result[0].geometry.location.lng}}
-                        defaultZoom={15}
-                        center = {{lat:result[selected].geometry.location.lat,lng:result[selected].geometry.location.lng}}
+                          bootstrapURLKeys={{ key: 'AIzaSyA_crOYEj2K4emrHWkGZsBiqm5Hw7jNyS4'}}
+                          defaultCenter={{lat:result[0].geometry.location.lat,lng:result[0].geometry.location.lng}}
+                          defaultZoom={15}
+                          center = {{lat:result[selected].geometry.location.lat,lng:result[selected].geometry.location.lng}}
                         >
-                        <AnyReactComponent
-                            lat={result[selected].geometry.location.lat}
-                            lng={result[selected].geometry.location.lng}
-                            text="My Marker"
-                        />
+                          <AnyReactComponent
+                              lat={result[selected].geometry.location.lat}
+                              lng={result[selected].geometry.location.lng}
+                              text="My Marker"
+                          />
                         </GoogleMapReact>
+                        
                     </div>
                      </div>
                 :<div></div>
-}
+} 
+                  <GoogleMapReact
+                          bootstrapURLKeys={{ key: 'AIzaSyA_crOYEj2K4emrHWkGZsBiqm5Hw7jNyS4'}}
+                          defaultCenter={{lat:37,lng:36}}
+                          defaultZoom={15}
+                          center = {{lat:37,lng:36}}
+                        >
+                  </GoogleMapReact>
         
         </Paper>
     )
