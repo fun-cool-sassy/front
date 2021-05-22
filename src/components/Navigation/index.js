@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Tab, Tabs, Typography } from "@material-ui/core";
-import PopUp from "../PopUpInfo";
+import PopUpInput from "../PopUpInput";
+import PopUpInfo from "../PopUpInfo";
 import Button from "@material-ui/core/Button";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import SearchIcon from "@material-ui/icons/Search";
@@ -12,6 +13,8 @@ import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import styled from "styled-components";
+import Dialog from "@material-ui/core/Dialog";
+import CloseIcon from "@material-ui/icons/Close";
 
 
 function TabPanel(props) {
@@ -101,14 +104,33 @@ const useStyles = makeStyles((theme) => ({
 			width: "20ch",
 		},
 	},
+	dialog: {
+		display: "flex",
+	},
+	font: {
+		fontSize: 20,
+	},
+	formControl: {
+		margin: theme.spacing(1),
+		minWidth: 120,
+	},
+	selectEmpty: {
+		marginTop: theme.spacing(2),
+	},
+	popupRoot: {
+		"& > *": {
+			margin: theme.spacing(1),
+			width: "25ch",
+		},
+	},
 }));
 const Navigation = () => {
 	const classes = useStyles();
-	const [value, setValue] = React.useState(0);
-	const [content, setContent] = React.useState("");
-	const [isSearchPanel, setIsSearchPanel] = React.useState(true);
-	const [isTalkPanel, setIsTalkPanel] = React.useState(true);
-	const [isRankPanel, setIsRankPanel] = React.useState(true);
+	const [value, setValue] = useState(0);
+	const [content, setContent] = useState("");
+	const [isSearchPanel, setIsSearchPanel] = useState(true);
+	const [isTalkPanel, setIsTalkPanel] = useState(true);
+	const [isRankPanel, setIsRankPanel] = useState(true);
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
@@ -151,7 +173,7 @@ const Navigation = () => {
 					<Button height={400} onClick={() => setIsSearchPanel(!isSearchPanel)}>
 						<ArrowBackIosIcon></ArrowBackIosIcon>
 					</Button>
-					<PopUp />
+					<PopUpInput />
 				</Box>
 			</TabPanel>
 			<TabPanel value={value} index={2}>
@@ -167,12 +189,13 @@ const Navigation = () => {
 							</Box>
 							<Button>Near me(1km)</Button>
 							<Button>Exclude resolved posts</Button>
+							<img src="https://picsum.photos/400/300" alt="random img" />
 						</Box>
 					)}
 					<Button height={400} onClick={() => setIsTalkPanel(!isTalkPanel)}>
 						<ArrowBackIosIcon></ArrowBackIosIcon>
 					</Button>
-					<PopUp />
+					<PopUpInfo />
 				</Box>
 			</TabPanel>
 			<TabPanel value={value} index={3}>
@@ -197,7 +220,7 @@ const Navigation = () => {
 					<Button height={400} onClick={() => setIsRankPanel(!isRankPanel)}>
 						<ArrowBackIosIcon></ArrowBackIosIcon>
 					</Button>
-					<PopUp />
+					<PopUpInput />
 				</Box>
 			</TabPanel>
 			<TabPanel value={value} index={4}>
