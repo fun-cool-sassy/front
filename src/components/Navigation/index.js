@@ -252,14 +252,14 @@ const Navigation = () => {
               <Button>Near me(1km)</Button>
               <Button>Exclude resolved posts</Button>
               <img
-                src="https://picsum.photos/400/300"
+                src="https://picsum.photos/400/250"
                 alt="random img"
                 onClick={() => {
                   setOpen(!open);
                 }}
               />
               <img
-                src="https://picsum.photos/400/299"
+                src="https://picsum.photos/400/249"
                 alt="random img"
                 onClick={() => {
                   setOpen(!open);
@@ -313,7 +313,7 @@ const Navigation = () => {
         </Box>
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five
+        Created by Team FCS(Fun Cool Sassy)
       </TabPanel>
     </div>
   );

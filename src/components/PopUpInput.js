@@ -72,8 +72,7 @@ function SimpleDialog(props) {
           </Button>
           <form className={classes.root} noValidate autoComplete="off">
             <Typography>{new Date().toLocaleString()}</Typography>
-            <FormControl className={classes.dialog}></FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.dialog}>
               <InputLabel id="demo-simple-select-label">Target</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -86,6 +85,8 @@ function SimpleDialog(props) {
                 <MenuItem value={"Children"}>Children</MenuItem>
                 <MenuItem value={"Others"}>Others</MenuItem>
               </Select>
+            </FormControl>
+            <FormControl className={classes.formControl}>
               <InputLabel id="demo-simple-select-label">Problem</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
