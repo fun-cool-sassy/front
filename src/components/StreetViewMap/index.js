@@ -1,5 +1,6 @@
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import React,{Component} from 'react';
+import ScreenShot from '../ScreenShot';
 export class StreetViewMap extends Component {
     
   render() {
@@ -9,11 +10,14 @@ export class StreetViewMap extends Component {
         height: '700px'
       }
     return (
-      <Map google={this.props.google} containerStyle={containerStyle} zoom={14} initialCenter={{ lat: 37.715133, lng: 126.734086}}>
- 
-        <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
-      </Map>
+        <>
+        <Map google={this.props.google} containerStyle={containerStyle} zoom={14} initialCenter={{ lat: 37.715133, lng: 126.734086}}>
+    
+            <Marker onClick={this.onMarkerClick}
+                    name={'Current location'} />
+        </Map>
+        <ScreenShot/>
+      </>
     );
   }
 }

@@ -22,13 +22,12 @@ const ScreenShot = () => {
         return <Slide direction="up" ref={ref} {...props} />;
       });
       const handleClickOpen = () => {
-        takeScreenshot();
         setOpen(true);
       };
     return (
       <div>
         <h1>Hello World!</h1>
-        <button onClick={() =>handleClickOpen}>screenshot</button>
+        <button onClick={() =>takeScreenshot()}>screenshot</button>
         <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         ScreenShot
       </Button>
