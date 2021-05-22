@@ -10,6 +10,7 @@ import DirectionsIcon from '@material-ui/icons/Directions';
 import {searchAddress} from '../../API/'
 import GoogleMapReact from 'google-map-react';
 
+
 import { List, ListItem,ListItemText } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -81,6 +82,7 @@ const Search = ()=>{
                           bootstrapURLKeys={{ key: 'AIzaSyA_crOYEj2K4emrHWkGZsBiqm5Hw7jNyS4'}}
                           defaultCenter={{lat:result[0].geometry.location.lat,lng:result[0].geometry.location.lng}}
                           defaultZoom={15}
+                          options={{streetViewControl: true}}
                           center = {{lat:result[selected].geometry.location.lat,lng:result[selected].geometry.location.lng}}
                         >
                           <AnyReactComponent
@@ -89,18 +91,11 @@ const Search = ()=>{
                               text="My Marker"
                           />
                         </GoogleMapReact>
-                        
                     </div>
                      </div>
                 :<div></div>
 } 
-                  <GoogleMapReact
-                          bootstrapURLKeys={{ key: 'AIzaSyA_crOYEj2K4emrHWkGZsBiqm5Hw7jNyS4'}}
-                          defaultCenter={{lat:37,lng:36}}
-                          defaultZoom={15}
-                          center = {{lat:37,lng:36}}
-                        >
-                  </GoogleMapReact>
+                
         
         </Paper>
     )
