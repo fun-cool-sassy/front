@@ -13,6 +13,8 @@ import Navigation from "../components/Navigation";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import Header from "../components/Header";
+import StreetViewMap from '../components/StreetViewMap'
+import ScreenShot from "../components/ScreenShot";
 
 const MyContainer = styled.div`
     display: flex;
@@ -43,7 +45,7 @@ const Routes = (props)=>{
                     />
                     <Route 
                         path="/"
-                        render={(props)=> <Navigation {...props}/>}
+                        render={(props)=> <><Navigation {...props}/>{<StreetViewMap/>}<ScreenShot/></>}
                     />
                 </Switch>
             </Box>

@@ -12,6 +12,8 @@ import GoogleMapReact from 'google-map-react';
 
 
 import { List, ListItem,ListItemText } from '@material-ui/core';
+import ScreenShot from '../ScreenShot';
+import StreetViewMap from '../StreetViewMap'
 const useStyles = makeStyles((theme) => ({
     root: {
       padding: '2px 4px',
@@ -91,12 +93,12 @@ const Search = ()=>{
                               text="My Marker"
                           />
                         </GoogleMapReact>
+                        
                     </div>
                      </div>
                 :<div></div>
 } 
-                
-        
+
         </Paper>
     )
 }
