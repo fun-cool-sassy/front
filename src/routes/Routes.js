@@ -18,9 +18,8 @@ import ScreenShot from "../components/ScreenShot";
 
 const MyContainer = styled.div`
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
     flex-direction: column;
-    justify-content:space-between;
 `;
 
 const Routes = (props)=>{
@@ -30,27 +29,27 @@ const Routes = (props)=>{
         updateUser(userToken);
     }, []);
     return (
-        <MyContainer>
-            <Router>
-            <Header/>
-            <Box mt={20} flex={1} flexDirection="column" display="flex">
-                <Switch>
-                    <Route
-                        path="/signin"
-                        render={(props) => <SignIn {...props} user={user}/>}
-                    />
-                    <Route
-                        path="/signup"
-                        render={(props) => <SignUp {...props} user={user}/>}
-                    />
-                    <Route 
-                        path="/"
-                        render={(props)=> <><Navigation {...props}/><StreetViewMap></StreetViewMap><div>ddddddddd</div><ScreenShot></ScreenShot></>}
-                    />
-                </Switch>
-            </Box>
-            </Router>
-        </MyContainer>
+        <Router>
+            <MyContainer>
+                <Header/>
+                <Box flex={1} flexDirection="column" display="flex">
+                    <Switch>
+                        <Route
+                            path="/signin"
+                            render={(props) => <SignIn {...props} user={user}/>}
+                        />
+                        <Route
+                            path="/signup"
+                            render={(props) => <SignUp {...props} user={user}/>}
+                        />
+                        <Route 
+                            path="/"
+                            render={(props)=> <Navigation {...props}/>}
+                        />
+                    </Switch>
+                </Box>
+            </MyContainer>
+        </Router>
     )
 }
 

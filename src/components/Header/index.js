@@ -1,15 +1,11 @@
 import React from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import {AppBar,Toolbar,IconButton,Typography,Badge,MenuItem,Menu} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 const useStyles = makeStyles((theme) => ({
-  grow: {
-    flexGrow: 1,
-  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -91,10 +87,6 @@ function Header() {
     handleMobileMenuClose();
   };
 
-  // const handleMobileMenuOpen = (event) => {
-  //   setMobileMoreAnchorEl(event.currentTarget);
-  // };
-
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -153,7 +145,7 @@ function Header() {
   );
 
   return (
-    <div className={classes.grow}>
+    <>
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
@@ -164,7 +156,7 @@ function Header() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-    </div>
+    </>
   );
 }
 

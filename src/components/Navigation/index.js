@@ -2,8 +2,10 @@ import React, {
 	useState,
 	useCallback,
 	useMemo,
+	useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles';
 import {Box,Tab,Tabs,Typography} from '@material-ui/core';
 import Search from '../Search';
@@ -11,6 +13,8 @@ import PopUp from "../PopUpInfo";
 import Button from "@material-ui/core/Button";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Rank from '../Rank'
+import StreetViewMap from '../StreetViewMap'
+import Pannel from '../Pannel';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -49,9 +53,13 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		backgroundColor: theme.palette.background.paper,
 		display: "flex",
-		height: '90vh',
+		height: '100%',
+		wdith: '100vw',
 	},
 	tabs: {
+		width: '180px',
+		backgroundColor: '#FFFFFF',
+		zIndex: 100,
 		borderRight: `1px solid ${theme.palette.divider}`,
 	},
 	displayFlex: {
@@ -82,9 +90,6 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: "center",
 		justifyContent: "center",
 	},
-	inputRoot: {
-		color: "inherit",
-	},
 	inputInput: {
 		padding: theme.spacing(1, 1, 1, 0),
 		// vertical padding + font size from searchIcon
@@ -100,21 +105,11 @@ const Navigation = () => {
 	const classes = useStyles();
 	const [value, setValue] = useState(0);
 
-	const [showPanel, setShowPanel] = useState(true);
-
-	const handleTogglePanel = useCallback(() => {
-		setShowPanel(!showPanel)
-	}, [showPanel])
+	const [showPannel, setShowPanel] = useState(false);
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
-
-	const PannelButtonComponent = useMemo(() => (
-		<Button height={'100%'} onClick={handleTogglePanel}>
-			<ArrowBackIosIcon></ArrowBackIosIcon>
-		</Button>
-	), [handleTogglePanel])
 
 	return (
 		<div className={classes.root}>
@@ -125,6 +120,8 @@ const Navigation = () => {
 				onChange={handleChange}
 				aria-label="Vertical tabs example"
 				className={classes.tabs}
+				onMouseEnter={() => setShowPanel(true)}
+				onMouseLeave={() => setShowPanel(false)}
 			>
 				<Tab label="Logo" {...a11yProps(0)} />
 				<Tab label="Map" {...a11yProps(1)} />
@@ -132,33 +129,27 @@ const Navigation = () => {
 				<Tab label="Rank" {...a11yProps(3)} />
 				<Tab label="Etc" {...a11yProps(4)} />
 			</Tabs>
-			<TabPanel value={value} index={0}>
-				Item One
-			</TabPanel>
-			<TabPanel value={value} index={1}>
-				<Box className={classes.displayFlex} >
-					{ showPanel && <Search/> }
-					{ PannelButtonComponent }
+			<Pannel show={showPannel}>
+				<TabPanel value={value} index={0}>
+					Item One
+				</TabPanel>
+				<TabPanel value={value} index={1}>
+					<Search/>
 					<PopUp />
-				</Box>
-			</TabPanel>
-			<TabPanel value={value} index={2}>
-			<Box className={classes.displayFlex}>
-					{ showPanel && <Search/> }
-					{ PannelButtonComponent }
+				</TabPanel>
+				<TabPanel value={value} index={2}>
+					<Search/>
 					<PopUp />
-				</Box>
-			</TabPanel>
-			<TabPanel value={value} index={3}>
-			<Box className={classes.displayFlex}>
-					{ showPanel && <Rank /> }
-					{ PannelButtonComponent }
+				</TabPanel>
+				<TabPanel value={value} index={3}>
+					<Rank />
 					<PopUp />
-				</Box>
-			</TabPanel>
-			<TabPanel value={value} index={4}>
-				Item Five
-			</TabPanel>
+				</TabPanel>
+				<TabPanel value={value} index={4}>
+					Item Five
+				</TabPanel>
+			</Pannel>
+			<StreetViewMap />
 		</div>
 	);
 };
