@@ -31,13 +31,13 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-  const AnyReactComponent = ({ text }) => <div>{text}</div>;
+  const AnyReactComponent = ({ text }) => <div style={{width:'10px',height:'10px',backgroundColor:'red',borderRadius:'50%'}}></div>;
 const Search = ()=>{
     const classes = useStyles();
     const [keyword,setKeyword]=useState();
     const [location,setLo] = useState();
     const [result,setResult] = useState();
-    const [selected,setSelect] = useState();
+    const [selected,setSelect] = useState(0);
     const containerStyle = {
         width: '400px',
         height: '400px'
@@ -56,40 +56,44 @@ const Search = ()=>{
                     inputProps={{ 'aria-label': 'search google maps' }}
                     onChange = {(e)=>{setKeyword(e.target.value)}}
                 />
-                <IconButton type="submit" className={classes.iconButton} aria-label="search" onClick={()=>searchAddress(keyword).then(e=>{setResult(e.data.results);})}>
+                <IconButton type="submit" className={classes.iconButton} aria-label="search" onClick={()=>{setSelect(0); searchAddress(keyword).then(e=>{setResult(e.data.results);})}}>
                     <SearchIcon />
                 </IconButton>
             </Paper>
                 {result?
-                <List component="nav" aria-label="secondary mailbox folder">
-                    {
-                        result.map((index,key)=>{
-                                return(
-                                    <ListItem
-                                        button
-                                        onClick={(event) => {setSelect(event.target);console.log(event)}}
-                                    >
-                                        <ListItemText primary={index.name} secondary={index.formatted_address ? index.formatted_address : null}/>
-                                    </ListItem>)
-                        })
-                    }
-              </List>
-                
-                :<div>Loading</div>
+                <div>
+                    <List component="nav" aria-label="secondary mailbox folder">
+                        {
+                            result.map((index,key)=>{
+                                    return(
+                                        <ListItem
+                                            button
+                                            selected = {selected===key}
+                                            onClick={(event) => {setSelect(key);console.log(key)}}
+                                        >
+                                            <ListItemText primary={index.name} secondary={index.formatted_address ? index.formatted_address : null}/>
+                                        </ListItem>)
+                            })
+                        }
+                     </List>
+                     <div style={{ height: '70vh', width: '100%' }}>
+                        <GoogleMapReact
+                        bootstrapURLKeys={{ key: 'AIzaSyA_crOYEj2K4emrHWkGZsBiqm5Hw7jNyS4'}}
+                        defaultCenter={{lat:result[0].geometry.location.lat,lng:result[0].geometry.location.lng}}
+                        defaultZoom={15}
+                        center = {{lat:result[selected].geometry.location.lat,lng:result[selected].geometry.location.lng}}
+                        >
+                        <AnyReactComponent
+                            lat={result[selected].geometry.location.lat}
+                            lng={result[selected].geometry.location.lng}
+                            text="My Marker"
+                        />
+                        </GoogleMapReact>
+                    </div>
+                     </div>
+                :<div></div>
 }
-            <div style={{ height: '70vh', width: '100%' }}>
-                <GoogleMapReact
-                bootstrapURLKeys={{ key: 'AIzaSyA_crOYEj2K4emrHWkGZsBiqm5Hw7jNyS4'}}
-                defaultCenter={{lat:33,lng:30}}
-                defaultZoom={7}
-                >
-                <AnyReactComponent
-                    lat={59.955413}
-                    lng={30.337844}
-                    text="My Marker"
-                />
-                </GoogleMapReact>
-            </div>
+        
         </Paper>
     )
 }

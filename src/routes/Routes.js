@@ -41,17 +41,17 @@ const Routes = (props)=>{
                     <Switch>
                         <Route
                             path="/signin"
-                            // render={(props) =>(
-                            //     <SignIn {...props} user={user}/>
-                            //     )
-                            // }
+                            render={(props) =>(
+                                <SignIn {...props} user={user}/>
+                                )
+                            }
                         />
                         <Route
                             path="/signup"
-                            // render={(props) =>(
-                            //     <SignUp {...props} user={user}/>
-                            //     )
-                            // }
+                            render={(props) =>(
+                                <SignUp {...props} user={user}/>
+                                )
+                            }
                         />
                         
                         <Route 

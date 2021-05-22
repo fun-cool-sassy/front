@@ -5,6 +5,8 @@ import styled,{ThemeProvider,createGlobalStyle} from "styled-components";
 import { ThemeProvider as MuiThemeProvider,createMuiTheme} from "@material-ui/core/styles";
 
 import { green, grey, indigo, red, teal } from "@material-ui/core/colors";
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 import themes from './theme';
 const GlobalStyle = createGlobalStyle` 
