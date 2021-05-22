@@ -4,22 +4,15 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
 } from "react-router-dom";
 import {
     Box,
-    Container
-  } from "@material-ui/core";
+} from "@material-ui/core";
 
-import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
-import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import Header from "../components/Header";
-import Maps from "../components/Maps";
-import StreetViewMap from "../components/StreetViewMap";
-import { Wrapper } from "@googlemaps/react-wrapper";
 
 const MyContainer = styled.div`
     display: flex;
@@ -33,37 +26,27 @@ const Routes = (props)=>{
     useEffect(() => {
         const userToken = localStorage.getItem("user");
         updateUser(userToken);
-      }, []);
+    }, []);
     return (
         <MyContainer>
             <Router>
             <Header/>
-            <Navigation {...props}/>
-                <Box mt={20}  flex={1} flexDirection="column" display="flex">
-                    <Switch>
-                        <Route
-                            path="/signin"
-                            render={(props) =>(
-                                <SignIn {...props} user={user}/>
-                                )
-                            }
-                        />
-                        <Route
-                            path="/signup"
-                            render={(props) =>(
-                                <SignUp {...props} user={user}/>
-                                )
-                            }
-                        />
-                        
-                        <Route 
-                            path="/"
-                            render={(props)=>(<StreetViewMap/>)}
-                        />
-                    </Switch>
-                </Box>
-                {/* <Footer {...props}/> */}
-
+            <Box mt={20} flex={1} flexDirection="column" display="flex">
+                <Switch>
+                    <Route
+                        path="/signin"
+                        render={(props) => <SignIn {...props} user={user}/>}
+                    />
+                    <Route
+                        path="/signup"
+                        render={(props) => <SignUp {...props} user={user}/>}
+                    />
+                    <Route 
+                        path="/"
+                        render={(props)=> <Navigation {...props}/>}
+                    />
+                </Switch>
+            </Box>
             </Router>
         </MyContainer>
     )
