@@ -45,7 +45,7 @@ const Routes = (props)=>{
                     />
                     <Route 
                         path="/"
-                        render={(props)=> <><Navigation {...props}/>{<StreetViewMap/>}<ScreenShot/></>}
+                        render={(props)=> <><Navigation {...props}/><StreetViewMap></StreetViewMap><div>ddddddddd</div><ScreenShot></ScreenShot></>}
                     />
                 </Switch>
             </Box>

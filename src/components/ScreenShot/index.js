@@ -25,7 +25,7 @@ class ScreenShot extends React.Component {
     const { screenCapture } = this.state;
 
     return (
-        <div>{<StreetViewMap/>}
+      
       <ScreenCapture onEndCapture={this.handleScreenCapture}>
           
         
@@ -42,7 +42,6 @@ class ScreenShot extends React.Component {
           </div>
         )}
       </ScreenCapture>
-      </div>
     );
   }
 };
