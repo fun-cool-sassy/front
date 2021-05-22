@@ -1,20 +1,15 @@
 import React, {
 	useState,
-	useCallback,
-	useMemo,
-	useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles';
 import {Box,Tab,Tabs,Typography} from '@material-ui/core';
-import Search from '../Search';
 import PopUp from "../PopUpInfo";
-import Button from "@material-ui/core/Button";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import Pannel from '../Pannel';
+import Search from '../Search';
+import Talk from '../Talk'
 import Rank from '../Rank'
 import StreetViewMap from '../StreetViewMap'
-import Pannel from '../Pannel';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -128,8 +123,7 @@ const Navigation = () => {
 					<PopUp />
 				</TabPanel>
 				<TabPanel value={value} index={2}>
-					<Search/>
-					<PopUp />
+					<Talk />
 				</TabPanel>
 				<TabPanel value={value} index={3}>
 					<Rank />
