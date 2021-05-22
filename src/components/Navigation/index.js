@@ -45,11 +45,12 @@ function a11yProps(index) {
       backgroundColor: theme.palette.background.paper,
       display: 'flex',
       height: '75vh',
-
+      
     },
     tabs: {
       borderRight: `1px solid ${theme.palette.divider}`,
-    },
+      
+    }
   }));
   const WrapperBox = styled.div`
     display: flex;

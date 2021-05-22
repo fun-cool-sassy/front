@@ -6,7 +6,7 @@ const color = {
       contrastText: 'white'
     },
     secondary: {
-      main: '#7B7496',
+      main: '#888888',
       contrastText: "black"
     },
     background:{
@@ -16,7 +16,7 @@ const color = {
       disabled: "rgba(0, 0, 0, 0.38)",
       hint: "rgba(0, 0, 0, 0.38)",
       primary: "#212121",
-      secondary: "#ffffff",
+      secondary: "#212121",
     }
   }
 }
