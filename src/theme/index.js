@@ -6,8 +6,8 @@ const color = {
       contrastText: 'white'
     },
     secondary: {
-      main: '#0045FF',
-      contrastText: "#0045FF"
+      main: '#000000',
+      contrastText: "white"
     },
     background:{
       default:'#000000',
