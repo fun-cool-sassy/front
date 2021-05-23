@@ -1,6 +1,6 @@
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+
 import React,{Component,useEffect, useState} from 'react';
-import {GoogleMap, useJsApiLoader, StreetViewPanorama} from '@react-google-maps/api';
+import {GoogleMap,Marker, useJsApiLoader, StreetViewPanorama} from '@react-google-maps/api';
 import { render } from '@testing-library/react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Dialog,Grid, Fab ,AppBar,Toolbar,IconButton,Typography,TextField,MenuItem,Button, Container} from '@material-ui/core';
@@ -85,7 +85,7 @@ export const  MapComponent =() =>{
         Authorization: `bearer ${localStorage.getItem('token')}`
       }
       getArticleList(data,headers).then(e=>{
-        setMarkers(e.data);
+        setMarkers(e);
         console.log(e);}
       )
     }
@@ -119,9 +119,35 @@ export const  MapComponent =() =>{
         clickableIcons={false}
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={15}        
-    > <Marker position={{lat: -3.744885532392086,lng: -38.52291792877774}}/>
-       
+        zoom={2}        
+    > 
+   {markers&& markers.map((index,key)=>{
+     return(
+      <Marker key={key}  position={{lat: index.latitude,lng: index.longitude}}/>
+     )
+   })}
+    
+       <StreetViewPanorama
+        onLoad={e=>setStreetViewPanorama(e)}
+
+          position={{lat:location.lat,lng:location.lng}}
+          visible={true}
+          mapContainerStyle={containerStyle}
+          onPanoChanged={() => {
+            if (streetViewPanorama != null) {
+              setLocation({lat:streetViewPanorama.getPosition().lat(),lng:streetViewPanorama.getPosition().lng()})
+             setAddress(streetViewPanorama.getLocation().description);
+            }
+          }}
+          onPovChanged={
+            ()=>{
+              if (streetViewPanorama != null) {
+              setPov(streetViewPanorama.getPov())
+              }
+            }
+          }
+          options={{clickToGo:false, enableCloseButton:false, addressControl:false,fullscreenControl:false,zoomControl:false,panControl:false}}
+        ></StreetViewPanorama>
     </GoogleMap>
     <Dialog fullScreen open={open} onClose={handleClose} >
         <AppBar className={classes.appBar}>

@@ -52,17 +52,7 @@ const Search = ()=>{
       };
     return(
         <Paper>
-            <Paper>
-                <InputBase
-                    className={classes.input}
-                    placeholder="Search Google Maps"
-                    inputProps={{ 'aria-label': 'search google maps' }}
-                    onChange = {(e)=>{setKeyword(e.target.value)}}
-                />
-                <IconButton type="submit" className={classes.iconButton} aria-label="search" onClick={()=>{setSelect(0); searchAddress(keyword).then(e=>{setResult(e.data.results);})}}>
-                    <SearchIcon />
-                </IconButton>
-            </Paper>
+            
                 {result?
                 <div>
                     <List component="nav" aria-label="secondary mailbox folder">
