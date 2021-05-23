@@ -119,31 +119,9 @@ export const  MapComponent =() =>{
         clickableIcons={false}
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={2}        
-    > <Marker  position={{lat: -3.744885532392086,
-      lng: -38.52291792877774}}/>
-       <StreetViewPanorama
-        onLoad={e=>setStreetViewPanorama(e)}
-
-          position={{lat:location.lat,lng:location.lng}}
-          visible={true}
-          mapContainerStyle={containerStyle}
-          onPanoChanged={() => {
-            if (streetViewPanorama != null) {
-              setLocation({lat:streetViewPanorama.getPosition().lat(),lng:streetViewPanorama.getPosition().lng()})
-             setAddress(streetViewPanorama.getLocation().description);
-            }
-          }}
-          onPovChanged={
-            ()=>{
-              if (streetViewPanorama != null) {
-              setPov(streetViewPanorama.getPov())
-              }
-            }
-          }
-          options={{clickToGo:false, enableCloseButton:false, addressControl:false,fullscreenControl:false,zoomControl:false,panControl:false}}
-        ><Marker  position={{lat: -3.744885532392086,
-          lng: -38.52291792877774}}/></StreetViewPanorama>
+        zoom={15}        
+    > <Marker position={{lat: -3.744885532392086,lng: -38.52291792877774}}/>
+       
     </GoogleMap>
     <Dialog fullScreen open={open} onClose={handleClose} >
         <AppBar className={classes.appBar}>
