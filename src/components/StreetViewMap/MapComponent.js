@@ -8,7 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { SettingsPowerRounded } from '@material-ui/icons';
 import {getArticleList, postArticle} from '../../API';
 import {Redirect} from 'react-router';
-export const  MapComponent =() =>{
+export const  MapComponent =(setPosition) =>{
     const [streetViewPanorama, setStreetViewPanorama] = useState(null);
     const [location, setLocation] = useState({lat:-3.745,lng:-38.523});
     const [pov, setPov] = useState({headeing:0,pitch:0});
@@ -136,7 +136,8 @@ export const  MapComponent =() =>{
           onPanoChanged={() => {
             if (streetViewPanorama != null) {
               setLocation({lat:streetViewPanorama.getPosition().lat(),lng:streetViewPanorama.getPosition().lng()})
-             setAddress(streetViewPanorama.getLocation().description);
+              setPosition(Location);
+              setAddress(streetViewPanorama.getLocation().description);
             }
           }}
           onPovChanged={

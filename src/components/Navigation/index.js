@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: "center",
 	},
 }));
-const Navigation = () => {
+const Navigation = (position,setPosition) => {
 	const classes = useStyles();
 	const [value, setValue] = useState(0);
 
@@ -146,7 +146,7 @@ const Navigation = () => {
 					<PopUp />
 				</TabPanel>
 				<TabPanel value={value} index={2}>
-					<Talk />
+					<Talk position={position}/>
 				</TabPanel>
 				<TabPanel value={value} index={3}>
 					<Rank />
@@ -157,7 +157,7 @@ const Navigation = () => {
 				</TabPanel>
                 
 			</Pannel>
-            <StreetViewMap/>
+            <StreetViewMap setPosition={setPosition()}/>
 		</div>
 	);
 };

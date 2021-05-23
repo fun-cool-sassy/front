@@ -1,10 +1,28 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import styled from 'styled-components'
 import SearchIcon from "@material-ui/icons/Search";
 import { ArticleMock } from '../../models/Feed';
 import Article from './Article';
-
-function Talk() {
+import {getArticleList} from '../../API'
+const Talk=(postition)=> {
+  const [feed,setFeed]=useState();
+  const handleGetMarkers = ()=>{
+    const data = `
+      latitude=${postition.lat}&
+      longitude=${postition.lng}
+  `
+  const headers={
+    Authorization: `bearer ${localStorage.getItem('token')}`
+  }
+  getArticleList(data,headers).then(e=>{
+    setFeed(e);
+    console.log(e);}
+  )
+}
+useEffect(() => {
+  if(postition){console.log(postition);}
+  handleGetMarkers();
+}, [])
   return (
     <Wrapper>
       <SearchWrapper>
