@@ -14,7 +14,7 @@ export const  MapComponent =() =>{
   const [location, setLocation] = useState({lat:-3.745,lng:-38.523});
   const [pov, setPov] = useState({headeing:0,pitch:0});
   const [open,setOpen]=useState(false);
-  const [title,setTitle] = useState();
+  const [problem,setProblem] = useState();
   const [target,setTarget] = useState();
   const [contents,setContents] = useState();
   const [address,setAddress] = useState();
@@ -76,7 +76,7 @@ export const  MapComponent =() =>{
     setOpen(false);
   };
   const handlePostApi = ()=>{
-    if(title&&contents&&target){
+    if(problem&&contents&&target){
       const data = {
         content_location:`https://maps.googleapis.com/maps/api/streetview?location=${location.lat},${location.lng}&size=656x456&fov=80&heading=${pov.heading}&pitch=${pov.pitch}&key=AIzaSyDP5khM0bM6hxMmn1nkIO6d4I1bnHy6kdw`,
         latitude:location.lat,
@@ -84,7 +84,7 @@ export const  MapComponent =() =>{
         detail:contents,
         targets:[target],
         address:address,
-        problems:['a']
+        problems: [problem],
 
       }
       const headers={
@@ -115,7 +115,7 @@ export const  MapComponent =() =>{
   useEffect(() => {
     handleGetMarkers();
   }, [])
-  const currencies = [
+  const targetCurrencies = [
     {
       value: 'Wheelchair',
       label: 'Wheelchair',
@@ -127,6 +127,28 @@ export const  MapComponent =() =>{
     {
       value: 'Child',
       label: 'Child',
+    },
+    {
+      value: 'Others',
+      label: 'Others',
+    },
+  ];
+  const problemCurrencies = [
+    {
+      value: 'Broken',
+      label: 'Broken',
+    },
+    {
+      value: 'Obstacles',
+      label: 'Obstacles',
+    },
+    {
+      value: 'Uninstalled',
+      label: 'Uninstalled',
+    },
+    {
+      value: 'Under Construction',
+      label: 'Under Construction',
     },
     {
       value: 'Others',
@@ -224,7 +246,7 @@ export const  MapComponent =() =>{
                     onChange={e=>setTarget(e.target.value)}
                     className={classes.text}
                   >
-                    {currencies.map((option) => (
+                    {targetCurrencies.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
                         {option.label}
                       </MenuItem>
@@ -238,13 +260,21 @@ export const  MapComponent =() =>{
                     margin="normal"
                     required
                     fullWidth
-                    id="id"
-                    label="Title"
-                    name="id"
-                    autoComplete="id"
+                    select
+                    id="problem"
+                    label="Problem."
+                    name="problem"
+                    autoComplete="problem"
                     autoFocus
-                    onChange={e=>setTitle(e.target.value)}
-                  />
+                    onChange={e=>setProblem(e.target.value)}
+                    className={classes.text}
+                  >
+                    {problemCurrencies.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
                   <TextField
                     variant="outlined"
                     margin="normal"
