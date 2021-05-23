@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {Redirect} from 'react-router';
+import { postSignUp } from '../API';
 
 function Copyright() {
   return (
@@ -48,12 +50,35 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
-
+    const [username,setUserName] = useState();
+    const [email,setEmail] = useState();
+    const [password,setPassword] = useState();
+    const [redirect,setRedirect]=useState(false);
+    const handlePostApi = ()=>{
+        if(username&&email&&password){
+            const data = {
+                username:username,
+                email:email,
+                password:password
+            }
+            postSignUp(data).then(e=>
+                setRedirect(true)
+            );;
+        }
+        else{
+            alert('Please type required input form');
+        }
+        
+    }
   return (
     <Container component="main" maxWidth="xs">
+        { redirect&&
+            <Redirect to='/'/>
+        }
       <CssBaseline />
       <div className={classes.paper}>
-        <img src="../assets/images/image.png" alt="logo"/>
+          <Link href="/"><img src="/assets/images/Logo_Line.png" alt="logo" /></Link>
+        
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
@@ -68,6 +93,7 @@ export default function SignUp() {
                 label="ID"
                 name="id"
                 autoComplete="id"
+                onChange={e=>setUserName(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -79,6 +105,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={e=>setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -91,18 +118,27 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={e=>setPassword(e.target.value)}
               />
             </Grid>
           </Grid>
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handlePostApi}
           >
             Sign Up
           </Button>
+          <Grid container>
+            <Grid item>
+              <Link href="/signin" variant="body2">
+                {"Do you have an account? Sign In"}
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
     </Container>

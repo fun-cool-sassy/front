@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState,useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Logo from './images/Frame.svg';
+import { postSignIn } from '../API';
+import {Redirect} from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,12 +33,37 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
-
+  const [username,setUserName] = useState();
+  const [password,setPassword] = useState();
+  const [redirect,setRedirect]=useState(false);
+  const handlePostApi = ()=>{
+    if(username&&password){
+        const data = {
+            username:username,
+            password:password
+        }
+        postSignIn(data).then(e=>
+            setRedirect(true)
+        );
+    }
+    else{
+        alert('Please type required input form');
+    }
+    
+}
+useEffect(() => {
+    if(localStorage.getItem('token')){
+        setRedirect(true);
+    }
+}, [])
   return (
     <Container component="main" maxWidth="xs">
+        { redirect&&
+            <Redirect to='/'/>
+        }
       <CssBaseline />
       <div className={classes.paper}>
-        <img src={Logo} alt="logo"/>
+      <Link href="/"><img src={Logo} alt="logo"/></Link>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -51,6 +78,7 @@ export default function SignIn() {
             name="id"
             autoComplete="id"
             autoFocus
+            onChange={e=>setUserName(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -62,19 +90,21 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={e=>setPassword(e.target.value)}
           />
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handlePostApi}
           >
             Sign In
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

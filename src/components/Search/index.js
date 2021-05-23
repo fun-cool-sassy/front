@@ -79,7 +79,7 @@ const Search = ()=>{
                             })
                         }
                      </List>
-                     <div style={{ height: '70vh', width: '100%' }}>
+                     {/* <div style={{ height: '70vh', width: '100%' }}>
                         <GoogleMapReact
                           bootstrapURLKeys={{ key: 'AIzaSyA_crOYEj2K4emrHWkGZsBiqm5Hw7jNyS4'}}
                           defaultCenter={{lat:result[0].geometry.location.lat,lng:result[0].geometry.location.lng}}
@@ -94,21 +94,10 @@ const Search = ()=>{
                           />
                         </GoogleMapReact>
                         
-                    </div>
+                    </div> */}
                      </div>
                 :<div></div>
 } 
-            <GoogleMap
-                clickableIcons={false}
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={2}
-            >
-                <StreetViewPanorama
-                  position={center}
-                  visible={true}
-                />
-            </GoogleMap>
         </Paper>
     )
 }

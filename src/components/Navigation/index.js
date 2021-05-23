@@ -1,22 +1,16 @@
 import React, {
-	useState,
-	useCallback,
-	useMemo,
-	useEffect,
+	useState,useEffect
 } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles';
-import {Box,Tab,Tabs,Typography} from '@material-ui/core';
-import Search from '../Search';
+import {Box,Button,Tab,Tabs,Typography} from '@material-ui/core';
 import PopUp from "../PopUpInfo";
-import Button from "@material-ui/core/Button";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import Pannel from '../Pannel';
+import Search from '../Search';
+import Talk from '../Talk'
 import Rank from '../Rank'
 import StreetViewMap from '../StreetViewMap'
-import Pannel from '../Pannel';
-import Footer from '../Footer';
-
+import createHistory from 'history/createBrowserHistory'
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
 
@@ -98,10 +92,31 @@ const Navigation = () => {
 
 	const [showPannel, setShowPanel] = useState(false);
 
+    const [login,setLogin]=useState(false);
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
-
+    const handleLoginButton = ()=>{
+        if(login){
+            const history = createHistory();
+            return(
+                <Button onClick={()=>{localStorage.removeItem('token');history.go(0)}}>Log out</Button>
+            )
+        }
+        else{
+            
+            
+            return(
+                <Button href="/signin" >Log in</Button>
+            )
+        }
+        
+    }
+    useEffect(() => {
+        if(localStorage.getItem('token')){
+            setLogin(true);
+        }
+    }, [])
 	return (
 		<div className={classes.root}>
 			<Tabs
@@ -119,6 +134,8 @@ const Navigation = () => {
 				<Tab label="Talk" {...a11yProps(2)} />
 				<Tab label="Rank" {...a11yProps(3)} />
 				<Tab label="Etc" {...a11yProps(4)} />
+                {handleLoginButton()}
+                
 			</Tabs>
 			<Pannel show={showPannel}>
 				<TabPanel value={value} index={0}>
@@ -129,8 +146,7 @@ const Navigation = () => {
 					<PopUp />
 				</TabPanel>
 				<TabPanel value={value} index={2}>
-					<Search/>
-					<PopUp />
+					<Talk />
 				</TabPanel>
 				<TabPanel value={value} index={3}>
 					<Rank />
@@ -139,6 +155,7 @@ const Navigation = () => {
 				<TabPanel value={value} index={4}>
 					Item Five
 				</TabPanel>
+                
 			</Pannel>
             <StreetViewMap/>
 		</div>
