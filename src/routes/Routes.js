@@ -31,7 +31,6 @@ const Routes = (props) => {
   return (
     <MyContainer>
       <Router>
-        <Header />
         <Navigation {...props} />
         <Box mt={20} flex={1} flexDirection="column" display="flex">
           <Switch>

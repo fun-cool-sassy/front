@@ -67,9 +67,12 @@ function SimpleDialog(props) {
           <img src="https://picsum.photos/400/300" alt="random img" />
         </Box>
         <Box>
-          <Button width={1 / 10} onClick={handleClose}>
-            <CloseIcon></CloseIcon>
-          </Button>
+          <div style={{ textAlign: "end"}}>
+            <Button width={1 / 10} onClick={handleClose}>
+              <CloseIcon></CloseIcon>
+            </Button>
+          </div>
+
           <form className={classes.root} noValidate autoComplete="off">
             <Typography>{new Date().toLocaleString()}</Typography>
             <FormControl className={classes.dialog}>

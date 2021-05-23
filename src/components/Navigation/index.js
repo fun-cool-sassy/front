@@ -15,6 +15,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Dialog from "@material-ui/core/Dialog";
 import CloseIcon from "@material-ui/icons/Close";
 import Avatar from "@material-ui/core/Avatar";
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -28,7 +29,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box p={1}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -182,7 +183,7 @@ const explanationText = (
     <p>
       Explore the world via Google Street View, and check non-barrier free zones
       on Google Earth maps and shares it among users. Let’s help users who have
-      barriers and become bounty hunter.{" "}
+      barriers and become bounty hunter.
     </p>
     <h4>How to use</h4>
     <ol>
@@ -223,7 +224,8 @@ const Navigation = () => {
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        className={classes.tabs}
+				className={classes.tabs}
+				
       >
         <Tab
           icon={<Avatar alt="bf" src="../assets/images/logo.png" />}
@@ -238,7 +240,7 @@ const Navigation = () => {
       <TabPanel value={value} index={1}>
         <Box className={classes.displayFlex}>
           {isSearchPanel && (
-            <Box className={classes.searchPanel} border={1}>
+            <Box className={classes.searchPanel} border={1} >
               <Box className={classes.displayFlexCenter}>
                 <InputBase
                   placeholder="Search location"
@@ -266,7 +268,7 @@ const Navigation = () => {
             </Box>
           )}
           <Button height={400} onClick={() => setIsSearchPanel(!isSearchPanel)}>
-            <ArrowBackIosIcon></ArrowBackIosIcon>
+						{isSearchPanel ? <ArrowBackIosIcon></ArrowBackIosIcon> : <ChevronRightIcon></ChevronRightIcon>}
           </Button>
           <PopUpInput />
         </Box>
@@ -312,7 +314,7 @@ const Navigation = () => {
             }}
           ></SimpleDialog>
           <Button height={400} onClick={() => setIsTalkPanel(!isTalkPanel)}>
-            <ArrowBackIosIcon></ArrowBackIosIcon>
+					{isTalkPanel ? <ArrowBackIosIcon></ArrowBackIosIcon> : <ChevronRightIcon></ChevronRightIcon>}
           </Button>
           {/* <PopUpInfo /> */}
         </Box>
@@ -324,7 +326,7 @@ const Navigation = () => {
               className={classes.searchPanel}
               display="flex"
               flexDirection="column"
-              border={1}
+							border={1}
             >
               <Typography className={classes.font}>Rank: {rank}</Typography>
               <Typography className={classes.font}>ID: {id}</Typography>
@@ -390,25 +392,26 @@ const Navigation = () => {
             </Box>
           )}
           <Button height={400} onClick={() => setIsRankPanel(!isRankPanel)}>
-            <ArrowBackIosIcon></ArrowBackIosIcon>
+					{isRankPanel ? <ArrowBackIosIcon></ArrowBackIosIcon> : <ChevronRightIcon></ChevronRightIcon>}
           </Button>
           {/* <PopUpInput /> */}
         </Box>
       </TabPanel>
       <TabPanel value={value} index={4}>
-        <h2>Team: Fun Cool Sassy</h2>
-        <h3>Entrepreneur</h3>
-        <p>Young-ji Sim(0g@soongsil.ac.kr)</p>
-        <h3>Designer</h3>
-        <p>Minju Kim(democracy0218@gmail.com)</p>
-        <h3>Developer</h3>
-        <p>Minju Kim(minj01134@gmail.com)</p>
-        <p>Siyual Bak(siyual.bak@gmail.com )</p>
-        <p>Yeong-u Song(songyw9812@gmail.com)</p>
-        <p>Yoojeong Lee(yjclarelee@postech.ac.kr)</p>
-
-        <br />
-        <p>Junction X Seoul</p>
+				<Box width={400} border={1} p={2}>
+          <h2>Team: Fun Cool Sassy</h2>
+          <h3>Entrepreneur</h3>
+          <p>Young-ji Sim(0g@soongsil.ac.kr)</p>
+          <h3>Designer</h3>
+          <p>Minju Kim(democracy0218@gmail.com)</p>
+          <h3>Developer</h3>
+          <p>Minju Kim(minj01134@gmail.com)</p>
+          <p>Siyual Bak(siyual.bak@gmail.com )</p>
+          <p>Yeong-u Song(songyw9812@gmail.com)</p>
+          <p>Yoojeong Lee(yjclarelee@postech.ac.kr)</p>
+          <br />
+          <p>Junction X Seoul</p>
+        </Box>
       </TabPanel>
     </div>
   );
