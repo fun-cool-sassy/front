@@ -13,7 +13,7 @@ import createHistory from 'history/createBrowserHistory'
 export const  MapComponent =(props) =>{
   const { onLocationChange } = props;
   const [streetViewPanorama, setStreetViewPanorama] = useState(null);
-  const [location, setLocation] = useState({lat:-3.745,lng:-38.523});
+  const [location, setLocation] = useState(null);
   const [pov, setPov] = useState({headeing:0,pitch:0});
   const [open,setOpen]=useState(false);
   const [problem,setProblem] = useState();
@@ -113,8 +113,8 @@ export const  MapComponent =(props) =>{
   }
   const handleGetMarkers = ()=>{
     const data = `
-          latitude=${location.lat}&
-          longitude=${location.lng}
+          latitude=${location?.lat}&
+          longitude=${location?.lng}
       `
     const headers={
       Authorization: `bearer ${localStorage.getItem('token')}`
@@ -187,7 +187,7 @@ export const  MapComponent =(props) =>{
         <StreetViewPanorama
           onLoad={e=>setStreetViewPanorama(e)}
 
-          position={{lat:location.lat,lng:location.lng}}
+          position={location == null ? {lat:-3.745,lng:-38.523} : null}
           visible={true}
           mapContainerStyle={containerStyle}
           onPanoChanged={() => {
@@ -233,7 +233,7 @@ export const  MapComponent =(props) =>{
                   </Typography>
                 </Box>
               </Box>
-              <img width={'100%'} src={`https://maps.googleapis.com/maps/api/streetview?location=${location.lat},${location.lng}&size=656x456&fov=80&heading=${pov.heading}&pitch=${pov.pitch}&key=AIzaSyDP5khM0bM6hxMmn1nkIO6d4I1bnHy6kdw`}/>
+              <img width={'100%'} src={`https://maps.googleapis.com/maps/api/streetview?location=${location?.lat},${location?.lng}&size=656x456&fov=80&heading=${pov.heading}&pitch=${pov.pitch}&key=AIzaSyDP5khM0bM6hxMmn1nkIO6d4I1bnHy6kdw`}/>
 
             </Box>
           </Grid>
