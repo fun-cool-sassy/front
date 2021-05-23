@@ -16,7 +16,7 @@ export const  MapComponent =(props) =>{
   const [location, setLocation] = useState({lat:-3.745,lng:-38.523});
   const [pov, setPov] = useState({headeing:0,pitch:0});
   const [open,setOpen]=useState(false);
-  const [title,setTitle] = useState();
+  const [problem,setProblem] = useState();
   const [target,setTarget] = useState();
   const [contents,setContents] = useState();
   const [address,setAddress] = useState();
@@ -85,7 +85,7 @@ export const  MapComponent =(props) =>{
   };
   const handlePostApi = ()=>{
     const history = createHistory();
-    if(title&&contents&&target){
+    if(problem&&contents&&target){
       const data = {
         content_location:`https://maps.googleapis.com/maps/api/streetview?location=${location.lat},${location.lng}&size=656x456&fov=80&heading=${pov.heading}&pitch=${pov.pitch}&key=AIzaSyDP5khM0bM6hxMmn1nkIO6d4I1bnHy6kdw`,
         latitude:location.lat,
@@ -93,7 +93,7 @@ export const  MapComponent =(props) =>{
         detail:contents,
         targets:[target],
         address:address,
-        problems:['a']
+        problems: [problem],
 
       }
       const headers={
@@ -127,7 +127,7 @@ export const  MapComponent =(props) =>{
   useEffect(() => {
     handleGetMarkers();
   }, [])
-  const currencies = [
+  const targetCurrencies = [
     {
       value: 'Wheelchair',
       label: 'Wheelchair',
@@ -139,6 +139,28 @@ export const  MapComponent =(props) =>{
     {
       value: 'Child',
       label: 'Child',
+    },
+    {
+      value: 'Others',
+      label: 'Others',
+    },
+  ];
+  const problemCurrencies = [
+    {
+      value: 'Broken',
+      label: 'Broken',
+    },
+    {
+      value: 'Obstacles',
+      label: 'Obstacles',
+    },
+    {
+      value: 'Uninstalled',
+      label: 'Uninstalled',
+    },
+    {
+      value: 'Under Construction',
+      label: 'Under Construction',
     },
     {
       value: 'Others',
@@ -216,7 +238,7 @@ export const  MapComponent =(props) =>{
             </Box>
           </Grid>
           <Grid item xs={4}>
-            <Box height="100%" width="100%" className={classes.side} paddingTop={5} paddingBottom={5}>
+            <Box height="100%" width="100%" className={classes.side} paddingTop={20} paddingBottom={20}>
               <Container>
                 { redirect&&
                 <Redirect to='/'/>
@@ -236,7 +258,7 @@ export const  MapComponent =(props) =>{
                     onChange={e=>setTarget(e.target.value)}
                     className={classes.text}
                   >
-                    {currencies.map((option) => (
+                    {targetCurrencies.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
                         {option.label}
                       </MenuItem>
@@ -250,13 +272,21 @@ export const  MapComponent =(props) =>{
                     margin="normal"
                     required
                     fullWidth
-                    id="id"
-                    label="Title"
-                    name="id"
-                    autoComplete="id"
+                    select
+                    id="problem"
+                    label="Problem."
+                    name="problem"
+                    autoComplete="problem"
                     autoFocus
-                    onChange={e=>setTitle(e.target.value)}
-                  />
+                    onChange={e=>setProblem(e.target.value)}
+                    className={classes.text}
+                  >
+                    {problemCurrencies.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
                   <TextField
                     variant="outlined"
                     margin="normal"
