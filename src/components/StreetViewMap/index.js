@@ -10,11 +10,12 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-const StreetViewMap = (setPosition)=> {
+const StreetViewMap = (props)=> {
+  const { onLocationChange } = props;
 
   return (
     <Wrapper>
-      <MapComponent setPosition={setPosition()} />
+      <MapComponent onLocationChange={onLocationChange} />
     </Wrapper>
   )
 }

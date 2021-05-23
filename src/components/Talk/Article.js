@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core'
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { MockImage } from '../../models/Feed'
@@ -10,8 +11,11 @@ function Article({
   }, [])
   return (
     <Wrapper>
+      {console.log(article)}
       <ImageWrapper onClick={handleClick}>
-        <MockImage />
+        <Typography varient="h6">{article.address}</Typography>
+        <Typography varient="caption">{article.detail}</Typography>
+        <MockImage src={article.content_location}/>
       </ImageWrapper>
     </Wrapper>
   )

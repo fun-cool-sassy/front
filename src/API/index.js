@@ -36,9 +36,15 @@ export async function getArticleList(payload,headers) {
     return data
 }
 
-export async function getRankList() {
-    const { data } = await axios.get(`${EndPoint}/user-ranks`, {
-
-    })
+export async function getRankList(headers) {
+    const { data } = await axios.get(`${EndPoint}/user-ranks`, {headers} )
+    return data
+}
+export async function getRankListTarget(headers) {
+    const { data } = await axios.get(`${EndPoint}/target-ranks`, {headers} )
+    return data
+}
+export async function getRankListProblem(headers) {
+    const { data } = await axios.get(`${EndPoint}/problem-ranks`, {headers} )
     return data
 }

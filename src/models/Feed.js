@@ -49,6 +49,8 @@ export const ArticleMock = {
   updatedAt: new Date(),
 }
 
-export const MockImage = () => (
-  <img src={Image} alt="img"/>
+export const MockImage = ({src}) => (
+  <>
+  <img src={src} alt="img"/>
+  </>
 )

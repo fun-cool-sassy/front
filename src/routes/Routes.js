@@ -24,10 +24,7 @@ const MyContainer = styled.div`
 
 const Routes = (props)=>{
     const [user, updateUser] = useState(null);
-    const [position,setP] = useState({lat:0,lng:0})
-    const setPosition = (data)=>{
-        setP({lat:data.lat,lng:data.lng});
-    }
+
     useEffect(() => {
         const userToken = localStorage.getItem("user");
         updateUser(userToken);
@@ -47,7 +44,7 @@ const Routes = (props)=>{
                         />
                         <Route 
                             path="/"
-                            render={(props)=> <Navigation position={position} setPosition={setPosition()} {...props}/>}
+                            render={(props)=> <Navigation {...props}/>}
                         />
                     </Switch>
                 </Box>

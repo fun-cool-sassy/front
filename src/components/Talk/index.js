@@ -4,38 +4,31 @@ import SearchIcon from "@material-ui/icons/Search";
 import { ArticleMock } from '../../models/Feed';
 import Article from './Article';
 import {getArticleList} from '../../API'
-const Talk=(postition)=> {
-  const [feed,setFeed]=useState();
-  const handleGetMarkers = ()=>{
-    const data = `
-      latitude=${postition.lat}&
-      longitude=${postition.lng}
-  `
-  const headers={
-    Authorization: `bearer ${localStorage.getItem('token')}`
-  }
-  getArticleList(data,headers).then(e=>{
-    setFeed(e);
-    console.log(e);}
+const Talk=(props)=> {
+  const { location } = props;
+  const [feed,setFeed]=useState([]);
+
+  const handleGetMarkers = (location)=>{
+    const data = `latitude=${location.lat}&longitude=${location.lng}`
+    const headers={
+     Authorization: `bearer ${localStorage.getItem('token')}`
+    }
+    getArticleList(data,headers).then(e=>{
+      setFeed(e);
+    }
   )
 }
 useEffect(() => {
-  if(postition){console.log(postition);}
-  handleGetMarkers();
-}, [])
+  if (location != null) {
+    handleGetMarkers(location);
+  }
+}, [location])
   return (
     <Wrapper>
-      <SearchWrapper>
-        <SerachForm
-          placeholder="Search"
-        />
-        <StyledSearchIcon />
-      </SearchWrapper>
+      
       {
-        new Array(5).fill(ArticleMock).map(({
-          key,
-        }) => (
-          <Article />
+        feed.map((article) => (
+          <Article article={article} />
         ))
       }
     </Wrapper>
