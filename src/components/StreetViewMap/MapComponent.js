@@ -204,7 +204,7 @@ export const  MapComponent =() =>{
             </Box>
           </Grid>
           <Grid item xs={4}>
-            <Box height="100%" width="100%" className={classes.side} paddingTop={5} paddingBottom={5}>
+            <Box height="100%" width="100%" className={classes.side} paddingTop={20} paddingBottom={20}>
               <Container>
                 { redirect&&
                 <Redirect to='/'/>
